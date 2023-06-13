@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/productModel')
@@ -77,8 +78,10 @@ app.delete('/products/:id', async(req, res) =>{
     }
 })
 
+
+
 mongoose.
-connect("mongodb+srv://admin:123456admin@calvinapi.csozyhu.mongodb.net/Node-API?retryWrites=true&w=majority")
+connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@calvinapi.csozyhu.mongodb.net/Node-API?retryWrites=true&w=majority`)
 .then(() => {
     console.log('connected to MongoDB')
     app.listen(3000, ()=>{
